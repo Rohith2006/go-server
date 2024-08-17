@@ -27,7 +27,7 @@ type Question struct {
     OptionD        string `json:"option_d" bson:"option_d"`
     CorrectAnswer  string `json:"correct_answer" bson:"correct_answer"`
     Difficulty     string `json:"difficulty" bson:"difficulty"`
-    Category       string `json:"category" bson:"category"`
+    Hint           string `json:"hint" bson:"hint"`
 }
 
 // ConnectDB establishes a connection to the MongoDB database
