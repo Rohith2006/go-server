@@ -180,13 +180,22 @@ func getRandomQuestionsHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(response)
 }
 
-func main() {
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+func Handler(w http.ResponseWriter, r *http.Request) {
+    switch r.URL.Path {
+    case "/post-questions":
+        postQuestionHandler(w, r)
+    case "/get-questions":
+        getQuestionsHandler(w, r)
+    case "/get-random-questions":
+        getRandomQuestionsHandler(w, r)
+    default:
         w.Write([]byte("Server working!"))
-    })
-    http.HandleFunc("/post-questions", postQuestionHandler)
-    http.HandleFunc("/get-questions", getQuestionsHandler)
-    http.HandleFunc("/get-random-questions", getRandomQuestionsHandler)
+    }
+}
+
+func main() {
+    
+    http.HandleFunc("/", Handler)
 
     port := ":8080"
     log.Printf("Server starting on %s...", port)
