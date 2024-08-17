@@ -7,6 +7,9 @@ import (
 
 func main() {
     // Set up routes
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        w.Write([]byte("Server working!"))
+    })
     http.HandleFunc("/post-questions", postQuestionHandler)          // Endpoint for posting questions
     http.HandleFunc("/get-questions", getQuestionsHandler)           // Endpoint for getting all questions
     http.HandleFunc("/get-random-questions", getRandomQuestionsHandler) // Endpoint for getting random questions
